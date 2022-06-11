@@ -6,5 +6,5 @@ go mod tidy
 go build -o server
 ```
 ```
-go get -d -v
+go run *.go
 ```

@@ -8,7 +8,8 @@ ENV CGO_ENABLED=0
 ENV GOOS=linux
 RUN apk add git tzdata ca-certificates
 # RUN git config --global url."https://{{GitHubPersonalAccessToken for PrivateRepository}}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
-RUN go get -d -v ./...
+RUN go mod init hexaforce/demo-echo-v4
+RUN go mod tidy
 # RUN go test -v ./...
 RUN go build -a -installsuffix cgo -o demo-echo-v4 .
 
