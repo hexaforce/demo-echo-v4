@@ -13,19 +13,6 @@ import (
 
 var addr = flag.String("addr", ":1323", "http service address")
 
-// func serveHome(w http.ResponseWriter, r *http.Request) {
-// 	log.Println(r.URL)
-// 	if r.URL.Path != "/" {
-// 		http.Error(w, "Not found", http.StatusNotFound)
-// 		return
-// 	}
-// 	if r.Method != http.MethodGet {
-// 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-// 		return
-// 	}
-// 	http.ServeFile(w, r, "home.html")
-// }
-
 func main() {
 
 	flag.Parse()
@@ -43,8 +30,6 @@ func main() {
 	// e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
 	// 	Format: "[${status}] ${error} host:${host} uri:${uri} method:${method} user_agent:${user_agent}\n",
 	// }))
-
-	// e.Static("/", "../public")
 
 	e.GET("/", healthCheck)
 
