@@ -128,7 +128,7 @@ func (c *Client) writePump() {
 }
 
 // serveWs handles websocket requests from the peer.
-func serveWs(hub *Hub, c echo.Context, userName string) error {
+func serveWs(hub *Hub, c echo.Context) error {
 
 	conn, err := upgrader.Upgrade(c.Response(), c.Request(), nil)
 	if err != nil {
@@ -137,6 +137,7 @@ func serveWs(hub *Hub, c echo.Context, userName string) error {
 	}
 	// defer conn.Close()
 
+	userName := c.Param("userName")
 	client := &Client{hub: hub, userName: userName, conn: conn, send: make(chan []byte, 256), once: sync.Once{}}
 	client.hub.register <- client
 

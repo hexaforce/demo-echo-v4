@@ -5,7 +5,6 @@ package main
 
 import (
 	"flag"
-	"net/http"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -21,26 +20,16 @@ func main() {
 	go hub.run()
 
 	e := echo.New()
-
 	e.Use(middleware.CORS())
-
 	e.Use(middleware.Recover())
-
 	e.Use(middleware.Logger())
-	// e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-	// 	Format: "[${status}] ${error} host:${host} uri:${uri} method:${method} user_agent:${user_agent}\n",
-	// }))
 
 	e.GET("/", healthCheck)
 
 	e.GET("/ws/:userName", func(c echo.Context) error {
-		return serveWs(hub, c, c.Param("userName"))
+		return serveWs(hub, c)
 	})
 
 	e.Logger.Fatal(e.Start(*addr))
 
-}
-
-func healthCheck(c echo.Context) error {
-	return c.String(http.StatusOK, "OK")
 }
