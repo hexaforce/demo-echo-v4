@@ -18,9 +18,7 @@ import (
 // @Produce  json
 // @Param id path int true "Account ID"
 // @Success 200 {object} schemas.Account
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+
 // @Router /accounts/{id} [get]
 func (c *Endpoint) ShowAccount(ctx echo.Context) error {
 	id := ctx.Param("id")
@@ -43,9 +41,7 @@ func (c *Endpoint) ShowAccount(ctx echo.Context) error {
 // @Produce  json
 // @Param q query string false "name search by q" Format(email)
 // @Success 200 {array} schemas.Account
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+
 // @Router /accounts [get]
 func (c *Endpoint) ListAccounts(ctx echo.Context) error {
 	q := ctx.QueryParam("q")
@@ -64,9 +60,7 @@ func (c *Endpoint) ListAccounts(ctx echo.Context) error {
 // @Produce  json
 // @Param account body schemas.AddAccount true "Add account"
 // @Success 200 {object} schemas.Account
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+
 // @Router /accounts [post]
 func (c *Endpoint) AddAccount(ctx echo.Context) error {
 	var addAccount schemas.AddAccount
@@ -96,9 +90,7 @@ func (c *Endpoint) AddAccount(ctx echo.Context) error {
 // @Param  id path int true "Account ID"
 // @Param  account body schemas.UpdateAccount true "Update account"
 // @Success 200 {object} schemas.Account
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+
 // @Router /accounts/{id} [patch]
 func (c *Endpoint) UpdateAccount(ctx echo.Context) error {
 	id := ctx.Param("id")
@@ -129,9 +121,7 @@ func (c *Endpoint) UpdateAccount(ctx echo.Context) error {
 // @Produce  json
 // @Param  id path int true "Account ID" Format(int64)
 // @Success 204 {object} schemas.Account
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+
 // @Router /accounts/{id} [delete]
 func (c *Endpoint) DeleteAccount(ctx echo.Context) error {
 	id := ctx.Param("id")
@@ -155,9 +145,7 @@ func (c *Endpoint) DeleteAccount(ctx echo.Context) error {
 // @Param  id path int true "Account ID"
 // @Param file formData file true "account image"
 // @Success 200 {object} controller.Message
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+
 // @Router /accounts/{id}/images [post]
 func (c *Endpoint) UploadAccountImage(ctx echo.Context) error {
 	id, err := strconv.Atoi(ctx.Param("id"))

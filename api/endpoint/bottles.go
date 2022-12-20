@@ -18,9 +18,7 @@ import (
 // @Produce  json
 // @Param  id path int true "Bottle ID"
 // @Success 200 {object} schemas.Bottle
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+
 // @Router /bottles/{id} [get]
 func (c *Endpoint) ShowBottle(ctx echo.Context) error {
 	id := ctx.Param("id")
@@ -42,9 +40,7 @@ func (c *Endpoint) ShowBottle(ctx echo.Context) error {
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} schemas.Bottle
-// @Failure 400 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+
 // @Router /bottles [get]
 func (c *Endpoint) ListBottles(ctx echo.Context) error {
 	bottles, err := schemas.BottlesAll()

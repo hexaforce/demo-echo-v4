@@ -17,10 +17,9 @@ import (
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} schemas.Admin
-// @Failure 400 {object} httputil.HTTPError
+
 // @Failure 401 {object} httputil.HTTPError
-// @Failure 404 {object} httputil.HTTPError
-// @Failure 500 {object} httputil.HTTPError
+
 // @Security ApiKeyAuth
 // @Router /admin/auth [post]
 func (c *Endpoint) Auth(ctx echo.Context) error {

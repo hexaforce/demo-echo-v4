@@ -12,13 +12,19 @@ RUN apk add git tzdata ca-certificates
 # RUN git config --global url."https://{{GitHubPersonalAccessToken for PrivateRepository}}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 RUN go mod init demo-echo-v4
 RUN go mod tidy
+
+RUN go install github.com/swaggo/swag/cmd/swag@latest
+RUN swag init
+
 # RUN go test -v ./...
 RUN go build -a -installsuffix cgo -o app .
+
 
 ####### production CONTAINER #######
 FROM scratch AS runtime
 
-COPY --from=build /go/src/app ./
+COPY --from=build /go/src/app .
+# COPY --from=build /go/src/docs /docs
 COPY --from=build /usr/share/zoneinfo /usr/share/zoneinfo
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 ENV TZ=Asia/Tokyo

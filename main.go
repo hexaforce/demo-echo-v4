@@ -7,6 +7,7 @@ import (
 	"flag"
 
 	api "demo-echo-v4/api"
+	_ "demo-echo-v4/docs"
 	websocket "demo-echo-v4/websocket"
 
 	"github.com/labstack/echo/v4"
