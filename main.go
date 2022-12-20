@@ -6,6 +6,8 @@ package main
 import (
 	"flag"
 
+	. "github.com/hexaforce/demo-echo-v4/api/api"
+	. "github.com/hexaforce/demo-echo-v4/api/websocket"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -24,7 +26,7 @@ func main() {
 	e.Use(middleware.Recover())
 	e.Use(middleware.Logger())
 
-	e.GET("/", healthCheck)
+	e.GET("/", HealthCheck)
 
 	e.GET("/ws/:userName", func(c echo.Context) error {
 		return serveWs(hub, c)
