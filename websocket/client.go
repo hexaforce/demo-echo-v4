@@ -128,7 +128,7 @@ func (c *Client) writePump() {
 }
 
 // serveWs handles websocket requests from the peer.
-func serveWs(hub *Hub, c echo.Context) error {
+func ServeWs(hub *Hub, c echo.Context) error {
 
 	conn, err := upgrader.Upgrade(c.Response(), c.Request(), nil)
 	if err != nil {

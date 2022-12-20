@@ -24,7 +24,7 @@ type Hub struct {
 	mu sync.RWMutex
 }
 
-func newHub() *Hub {
+func NewHub() *Hub {
 	return &Hub{
 		broadcast:  make(chan []byte),
 		register:   make(chan *Client),

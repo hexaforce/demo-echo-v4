@@ -6,8 +6,6 @@ package main
 import (
 	"flag"
 
-	. "github.com/hexaforce/demo-echo-v4/api/api"
-	. "github.com/hexaforce/demo-echo-v4/api/websocket"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -18,7 +16,7 @@ func main() {
 
 	flag.Parse()
 
-	hub := newHub()
+	hub := NewHub()
 	go hub.run()
 
 	e := echo.New()
@@ -29,7 +27,7 @@ func main() {
 	e.GET("/", HealthCheck)
 
 	e.GET("/ws/:userName", func(c echo.Context) error {
-		return serveWs(hub, c)
+		return ServeWs(hub, c)
 	})
 
 	e.Logger.Fatal(e.Start(*addr))
