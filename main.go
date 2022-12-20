@@ -32,13 +32,11 @@ func main() {
 
 	e.GET("/", api.HealthCheck)
 	api.HandlerMapping(e)
-	e.GET("/swagger/*", swagger.WrapHandler)
-	/*
-		Or can use EchoWrapHandler func with configurations.
-		url := swagger.URL("http://localhost:1323/swagger/doc.json") //The url pointing to API definition
-		e.GET("/swagger/*", swagger.EchoWrapHandler(url))
-	*/
 
+	// Swagger UI
+	e.GET("/swagger/*", swagger.WrapHandler)
+
+	// Websocket
 	e.GET("/ws/:userName", func(c echo.Context) error {
 		return websocket.ServeWs(hub, c)
 	})

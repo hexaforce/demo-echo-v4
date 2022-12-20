@@ -24,7 +24,6 @@ RUN go build -a -installsuffix cgo -o app .
 FROM scratch AS runtime
 
 COPY --from=build /go/src/app .
-# COPY --from=build /go/src/docs /docs
 COPY --from=build /usr/share/zoneinfo /usr/share/zoneinfo
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 ENV TZ=Asia/Tokyo
