@@ -4,6 +4,8 @@
 package main
 
 import (
+	api "demo-echo-v4/api"
+	websocket "demo-echo-v4/websocket"
 	"flag"
 
 	"github.com/labstack/echo/v4"
@@ -16,18 +18,18 @@ func main() {
 
 	flag.Parse()
 
-	hub := NewHub()
-	go hub.run()
+	hub := websocket.NewHub()
+	go hub.Run()
 
 	e := echo.New()
 	e.Use(middleware.CORS())
 	e.Use(middleware.Recover())
 	e.Use(middleware.Logger())
 
-	e.GET("/", HealthCheck)
+	e.GET("/", api.HealthCheck)
 
 	e.GET("/ws/:userName", func(c echo.Context) error {
-		return ServeWs(hub, c)
+		return websocket.ServeWs(hub, c)
 	})
 
 	e.Logger.Fatal(e.Start(*addr))
