@@ -8,6 +8,6 @@ go build -o app
 ```
 
 ```
-docker run -it demo/echo-v4
+docker build . -t demo/echo-v4
 docker run -it -p 1323:1323 demo/echo-v4
 ```

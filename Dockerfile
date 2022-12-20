@@ -1,8 +1,9 @@
 FROM golang:alpine AS build
 WORKDIR /go/src
 COPY ./*.go .
-COPY ./api/*.go api/
-COPY ./websocket/*.go websocket/
+COPY ./api api/
+COPY ./websocket websocket/
+COPY ./utils utils/
 
 ENV GO111MODULE=on
 ENV CGO_ENABLED=0
